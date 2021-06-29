@@ -2,7 +2,7 @@
 
 Conway's game of life implementation in vanilla JS.
 
-### Ingredient list
+### Requirements
 - browser supporting CSS Grids
 - and nothing else !
 
