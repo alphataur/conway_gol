@@ -2,6 +2,8 @@
 
 Conway's game of life implementation in vanilla JS.
 
+<img src="https://raw.githubusercontent.com/alphataur/conway_gol/main/game_of_life_preview.jpeg" />
+
 ### Requirements
 - browser supporting CSS Grids
 - and nothing else !
