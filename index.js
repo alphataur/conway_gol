@@ -12,6 +12,10 @@ function createDiv(value, root){
   root.appendChild(div)
 }
 
+
+
+
+
 function drawBoard(board){
   let m = board.length
   let n = board[0].length
@@ -51,7 +55,7 @@ function checkBounds(abscissa, ordinate, m, n){
   return (abscissa >= 0 && abscissa < m) && (ordinate >= 0 && ordinate < n)
 }
 
-function getNeighbors(abscissa, ordinate, m, n){
+function getNeighbors(abscissa, ordinate, m, n, board){
   let neighbors = []
   for(let i of [-1, 0, 1]){
     for(let j of [-1, 0, 1]){
@@ -62,31 +66,30 @@ function getNeighbors(abscissa, ordinate, m, n){
   return neighbors
 }
 function genGen(board){
-  let next = getNewGrid()
   let m = board.length
   let n = board[0].length
+  let next = getNewGrid(m, n)
   for(let i = 0; i < m; i++){
     for(let j = 0; j < n; j++){
-      let neighbors = getNeighbors(i,j,m,n)
+      let neighbors = getNeighbors(i,j,m,n,board)
       let aod = neighbors.reduce((a, e)=>{
         if(board[e[0]][e[1]])
           return a+1
         else
           return a
       }, 0)
-      if(aod > 3 && aod <= 5){
-        next[i][j] = 1
-        console.log("setting 1")
-      }
-      else{
-        next[i][j] = 0
-        console.log("setting 0")
-      }
+      console.log("neighbors", aod)
+      if( (board[i][j] === 0) && (aod === 3) ) next[i][j] = 1    //coming back to life; reproduction
+      else if( (board[i][j] === 1) && (aod > 3)) next[i][j] = 0  //going back to being dead; overpopulation
+      else if( (board[i][j] == 1) && ((aod >= 2) && (aod <= 3))) continue //imma not gonna change; statis
+      else if( (board[i][j] == 1) && (aod < 2) ) next[i][j] = 0 //i'm so lonely; underpopulation
+      else continue //console.log("broken logic at", next[i][j], "with", aod, "neighbors;", "neighborList", neighbors)
     }
   }
   return next
 }
 function fillRandomBoard(board){
+  console.log(board)
   console.log("filling randoms is my job")
   let m = board.length
   let n = board[0].length
@@ -119,12 +122,16 @@ window.onload = function(){
   fillRandomBoard(board)
   drawBoard(board)
   console.log("board initialized")
-  setTimeout(()=>{
-    //let next = genGen(board)
-    let next = getNewGrid()
-    console.log(next)
+  setInterval(()=>{
+    let next = genGen(board)
+
+    //let nextGen = getNewGrid(height/blockSize, width/blockSize)
+    //fillRandomBoard(nextGen)
+    
+    //console.log(genGen(nextGen))
     clearBoard()
     drawBoard(next)
+    board = next
   },2000)
   //while(true){
   //  let nextGen = genGen(board)
