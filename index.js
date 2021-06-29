@@ -83,7 +83,7 @@ function genGen(board){
       else if( (board[i][j] === 1) && (aod > 3)) next[i][j] = 0  //going back to being dead; overpopulation
       else if( (board[i][j] == 1) && ((aod >= 2) && (aod <= 3))) continue //imma not gonna change; statis
       else if( (board[i][j] == 1) && (aod < 2) ) next[i][j] = 0 //i'm so lonely; underpopulation
-      else continue //console.log("broken logic at", next[i][j], "with", aod, "neighbors;", "neighborList", neighbors)
+      else console.log("broken logic at", next[i][j], "with", aod, "neighbors;", "neighborList", neighbors)
     }
   }
   return next
