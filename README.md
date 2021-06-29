@@ -1,7 +1,18 @@
-# conway_gol
-Conway's game of life in vanilla JS.
+# Conway's Game of Life
 
-# usage 
+Conway's game of life implementation in vanilla JS.
+
+### Ingredient list
+- browser supporting CSS Grids
+- and nothing else !
+
+# Usage 
 open index.html in your preferred browser and you are set!
 
+# Todo
+- [X] Basic Implementation
+- [ ] Modified random logic so that epochs are longer
+- [ ] allow to change blockSize
+- [ ] Stop Pause and Reset
+- [ ] Organize
 
