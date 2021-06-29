@@ -111,8 +111,8 @@ window.onload = function(){
   //let canvas = document.querySelector("#canvas")
   //let ctx = canvas.getContext("2d")
   //console.log(canvas)
-  let height = 190 //canvas.offsetHeight  //in px
-  let width = 100 //canvas.offsetWidth    // in px
+  let height = 1900 //canvas.offsetHeight  //in px
+  let width = 1000 //canvas.offsetWidth    // in px
   let blockSize = 10
   let board = getNewGrid(height/blockSize, width/blockSize)
   //let board = new Array(height/blockSize)
