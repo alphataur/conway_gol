@@ -1,5 +1,9 @@
 function randomInt(){
-  return Math.round(Math.random())
+  //return Math.round(Math.random())
+  if((Math.floor(Math.random()*10) + 1) < 7)
+    return 0
+  else
+    return 1
 }
 function createDiv(value, root){
   let div = document.createElement("div")
@@ -81,9 +85,9 @@ function genGen(board){
       console.log("neighbors", aod)
       if( (board[i][j] === 0) && (aod === 3) ) next[i][j] = 1    //coming back to life; reproduction
       else if( (board[i][j] === 1) && (aod > 3)) next[i][j] = 0  //going back to being dead; overpopulation
-      else if( (board[i][j] == 1) && ((aod >= 2) && (aod <= 3))) continue //imma not gonna change; statis
+      else if( (board[i][j] == 1) && ((aod >= 2) && (aod <= 3))) next[i][j] = 1 //imma not gonna change; statis
       else if( (board[i][j] == 1) && (aod < 2) ) next[i][j] = 0 //i'm so lonely; underpopulation
-      else continue //console.log("broken logic at", next[i][j], "with", aod, "neighbors;", "neighborList", neighbors)
+      else console.log("broken logic at", next[i][j], "with", aod, "neighbors;", "neighborList", neighbors)
     }
   }
   return next
@@ -107,7 +111,7 @@ function clearBoard(){
   }
 }
 
-window.onload = function(){
+var start = function(){
   //let canvas = document.querySelector("#canvas")
   //let ctx = canvas.getContext("2d")
   //console.log(canvas)
@@ -139,4 +143,4 @@ window.onload = function(){
   //}
   //console.log(board)
 }
-
+window.onload = start
